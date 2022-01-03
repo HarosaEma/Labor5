@@ -23,12 +23,13 @@ public class Teacher extends Person {
 
     /**
      * constructor for the class teacher
+     *
      * @param courses the list of courses that one teacher teaches
      */
-    public Teacher(String firstname,String lastname,List<Course> courses, int TeacherId) {
-        super(firstname,lastname);
-        super.firstname=firstname;
-        super.lastname=lastname;
+    public Teacher(String firstname, String lastname, List<Course> courses, int TeacherId) {
+        super(firstname, lastname);
+        super.firstname = firstname;
+        super.lastname = lastname;
         this.courses = courses;
         this.TeacherId = TeacherId;
 

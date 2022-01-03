@@ -17,7 +17,7 @@ public class CourseRepo implements ICrudRepository<Course> {
     @Override
     public Course create(Course obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "insert into University.Course(Name, Credits, MaxEnrollment, CourseId) Values ("+"'"+obj.getName()+"'" + ","+"'"+obj.getCredits()+"'"+","+"'"+obj.getMaxEnrollment()+"'"+","+"'"+obj.getCourseId()+"'"+")";
@@ -37,7 +37,7 @@ public class CourseRepo implements ICrudRepository<Course> {
         List<Course> allCourses= new ArrayList<>();
         //setting up the connection
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "select * From University.Course";
@@ -54,7 +54,7 @@ public class CourseRepo implements ICrudRepository<Course> {
             }
             //setting the students for each course
             for (Course course:allCourses
-                 ) {
+            ) {
 
                 String joins= " select * from University.Student" +
                         " inner join StudentCourse " +
@@ -76,19 +76,19 @@ public class CourseRepo implements ICrudRepository<Course> {
                 }
                 course.setStudentsEnrolled(studentList);
 
-            //setting the teacher for each course
+                //setting the teacher for each course
 
-            String currentteacher="Select * From Teacher" +
-                    " Inner Join TeacherCourse " +
-                    "on Teacher.TeacherID = TeacherCourse.TeacherId" +
-                    " Inner Join Course " +
-                    "on TeacherCourse.CourseId = "+ course.getCourseId();
-            ResultSet teacher=stm.executeQuery(currentteacher);
-            Teacher parsingTeacher = new Teacher("","",null,0);
-            parsingTeacher.setFirstname(teacher.getString("FirstName"));
-            parsingTeacher.setLastname(teacher.getString("LastName"));
-            parsingTeacher.setTeacherId(teacher.getInt("TeacherID"));
-            course.setTeacher(parsingTeacher);
+                String currentteacher="Select * From Teacher" +
+                        " Inner Join TeacherCourse " +
+                        "on Teacher.TeacherID = TeacherCourse.TeacherId" +
+                        " Inner Join Course " +
+                        "on TeacherCourse.CourseId = "+ course.getCourseId();
+                ResultSet teacher=stm.executeQuery(currentteacher);
+                Teacher parsingTeacher = new Teacher("","",null,0);
+                parsingTeacher.setFirstname(teacher.getString("FirstName"));
+                parsingTeacher.setLastname(teacher.getString("LastName"));
+                parsingTeacher.setTeacherId(teacher.getInt("TeacherID"));
+                course.setTeacher(parsingTeacher);
             }
 
         } catch (SQLException e) {
@@ -102,7 +102,7 @@ public class CourseRepo implements ICrudRepository<Course> {
     @Override
     public Course update(Course obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "update University.Course set Name = " + obj.getName() + " where CourseId = "+obj.getCourseId();
@@ -119,7 +119,7 @@ public class CourseRepo implements ICrudRepository<Course> {
     public void delete(Course obj) {
 
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Course
             String Query = "delete from University.Course where CourseId = "+obj.getCourseId();

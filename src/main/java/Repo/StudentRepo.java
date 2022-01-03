@@ -18,7 +18,7 @@ public class StudentRepo implements ICrudRepository<Student>{
     @Override
     public Student create(Student obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/University", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306/University", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "insert into Student (FirstName,LastName,StudentId,Credits) Values ("+"'"+obj.getFirstname()+"'" +","+"'"+obj.getLastname()+"'"+","+"'"+obj.getStudentId()+"'"+","+"'"+obj.getTotalCredits()+"'"+");";
@@ -34,27 +34,27 @@ public class StudentRepo implements ICrudRepository<Student>{
 
     @Override
     public List<Student> getAll(){
-    List<Student> allStudents = new ArrayList<>();
-    //setting up the connection
+        List<Student> allStudents = new ArrayList<>();
+        //setting up the connection
         try (Connection con = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
-        Statement statement = null;
-        //getting all the values from Student
-        String Query = "select * From University.Student"; // getting the values of the parameters except the lists
-        statement=con.createStatement();
-        ResultSet resultSet= statement.executeQuery(Query);
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
+            Statement statement = null;
+            //getting all the values from Student
+            String Query = "select * From University.Student"; // getting the values of the parameters except the lists
+            statement=con.createStatement();
+            ResultSet resultSet= statement.executeQuery(Query);
 
 
 
-        while(resultSet.next()){
-            Student parsingStudent = new Student("","",0,0,null);
-            parsingStudent.setFirstname(resultSet.getString("FirstName"));
-            parsingStudent.setLastname(resultSet.getString("LastName"));
-            parsingStudent.setTotalCredits(resultSet.getInt("Credits"));
-            //adding all the students into the student list
-            allStudents.add(parsingStudent);
-            parsingStudent=null;
-        }
+            while(resultSet.next()){
+                Student parsingStudent = new Student("","",0,0,null);
+                parsingStudent.setFirstname(resultSet.getString("FirstName"));
+                parsingStudent.setLastname(resultSet.getString("LastName"));
+                parsingStudent.setTotalCredits(resultSet.getInt("Credits"));
+                //adding all the students into the student list
+                allStudents.add(parsingStudent);
+                parsingStudent=null;
+            }
 
 
 
@@ -82,18 +82,18 @@ public class StudentRepo implements ICrudRepository<Student>{
                 }
                 student.setEnrolledCourses(courseList);
             }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return allStudents;
     }
-
-
-            return allStudents;
-}
 
     @Override
     public Student update(Student obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "update University.Student set Credits = " + obj.getTotalCredits() + "where studentId = "+obj.getStudentId();
@@ -109,12 +109,12 @@ public class StudentRepo implements ICrudRepository<Student>{
     @Override
     public void delete(Student obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = " delete from University.Student where studentId = "+obj.getStudentId();
             statement=con.createStatement();
-             int rowcount=statement.executeUpdate(Query);
+            int rowcount=statement.executeUpdate(Query);
 
         } catch (SQLException e) {
             e.printStackTrace();

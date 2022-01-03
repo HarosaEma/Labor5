@@ -15,7 +15,7 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
     @Override
     public Teacher create(Teacher obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Teacher
             String Query = "insert into University.Teacher(FirstName, LastName, TeacherID) Values ("+"'"+obj.getFirstname()+"'" + ","+"'"+obj.getLastname()+"'"+","+"'"+obj.getTeacherId()+"'"+")";
@@ -34,7 +34,7 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
         List<Teacher> allTeachers = new ArrayList<>();
         //setting up the connection
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "select * From University.Teacher";
@@ -52,8 +52,8 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
 
 
             for (Teacher teacher :allTeachers
-                ) {
-               String joins = "select * from  University.Course " +
+            ) {
+                String joins = "select * from  University.Course " +
                         "inner join University.TeacherCourse" +
                         " on Course.CourseId=University.TeacherCourse.CourseId" +
                         " inner join University.Teacher" +
@@ -85,7 +85,7 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
     @Override
     public Teacher update(Teacher obj) {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "update University.Teacher set FirstName = " + obj.getFirstname() + " where TeacherId ="+obj.getTeacherId();
@@ -102,7 +102,7 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
     public void delete(Teacher obj) {
 
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             Statement statement = null;
             //getting all the values from Student
             String Query = "delete from University.Teacher where TeacherId = "+obj.getTeacherId();
@@ -115,5 +115,3 @@ public class TeacherRepo implements ICrudRepository<Teacher> {
 
     }
 }
-
-

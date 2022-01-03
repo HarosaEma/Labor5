@@ -19,7 +19,7 @@ class RegistrationSystemTest {
         RegistrationSystem registrationSystem = new RegistrationSystem(courseRepo,teacherRepo,studentRepo);
         Course course = new Course("DatenBanken",null,60,6,null);
         course.setCourseId(1);
-        Student student = new Student("Tudor","Nicolaescu",1,60,null);
+        Student student = new Student("Harosa","Emanuela",1,60,null);
         assert(!registrationSystem.register(course,student));
     }
 

@@ -16,9 +16,9 @@ import java.util.List;
  * the main app that defines the actions one University database needs
  */
 public class RegistrationSystem {
-   private CourseRepo courseRepo;
-   private TeacherRepo teacherRepo;
-   private StudentRepo studentRepo;
+    private CourseRepo courseRepo;
+    private TeacherRepo teacherRepo;
+    private StudentRepo studentRepo;
 
     public CourseRepo getCourseRepo() {
         return courseRepo;
@@ -65,11 +65,11 @@ public class RegistrationSystem {
      */
     public boolean register(Course course , Student student)  {
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
-                String selectedDataBase="USE University";
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
+            String selectedDataBase="USE University";
 
             String alreadyregisterd="select * from StudentCourse "+
-                                    " where StudentId = " + student.getStudentId() + " and CourseId = "+course.getCourseId();
+                    " where StudentId = " + student.getStudentId() + " and CourseId = "+course.getCourseId();
             Statement stm=null;
             stm=con.createStatement();
             stm.execute(selectedDataBase);
@@ -84,7 +84,7 @@ public class RegistrationSystem {
             }
             else
                 System.out.println("Student already registered");
-                return false;
+            return false;
 
         }
         catch (SQLException e){
@@ -102,7 +102,7 @@ public class RegistrationSystem {
     public List<Course> retrieveCoursesWithFreePlaces(){
         List<Course> courseList = new ArrayList<>();
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             String selectedDataBase="USE University";
             String courses ="Select * from Course ";
             Statement statement = null;
@@ -141,7 +141,7 @@ public class RegistrationSystem {
     public List<Student> retrieveStudentsEnrolledforaCourse(Course course){
         List<Student> studentList = new ArrayList<>();
         try (Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306", "root", "parola123")) {
+                .getConnection("jdbc:mysql://localhost:3306", "root", "8parola6")) {
             String selectedDataBase="USE University";
             String joins= " select * from University.Student" +
                     " inner join StudentCourse " +
